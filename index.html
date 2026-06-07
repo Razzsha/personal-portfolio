@@ -41,10 +41,6 @@
       line-height: 1.6;
     }
 
-    /* ═══════════════════════════════════════
-   PRELOADER  — new design, 3-color rule
-   black · cream · gold only
-═══════════════════════════════════════ */
     #preloader {
       position: fixed;
       inset: 0;
@@ -247,11 +243,6 @@
       }
     }
 
-
-
-    /* ═══════════════════════════════════════
-   PARTICLES
-═══════════════════════════════════════ */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -263,9 +254,6 @@
       opacity: .55;
     }
 
-    /* ═══════════════════════════════════════
-   KEYFRAMES (global)
-═══════════════════════════════════════ */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -382,9 +370,6 @@
       }
     }
 
-    /* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
     nav {
       position: fixed;
       top: 0;
@@ -516,9 +501,6 @@
       color: var(--gold);
     }
 
-    /* ═══════════════════════════════════════
-   HERO
-═══════════════════════════════════════ */
     #home {
       min-height: 100vh;
       display: flex;
@@ -800,12 +782,11 @@
     }
 
     .badge-float {
-      position: absolute;
-      background: rgba(22, 22, 22, .92);
+      background: #161616;
+      /* ← solid, no transparency */
       border: 1px solid rgba(201, 168, 76, .3);
       border-radius: 8px;
       padding: .6rem 1rem;
-      backdrop-filter: blur(12px);
       font-size: .78rem;
       font-weight: 600;
       color: var(--cream);
@@ -814,6 +795,9 @@
       gap: .5rem;
       animation: float 4s ease-in-out infinite;
       white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+      /* ← adds depth */
+      position: absolute;
     }
 
     .badge-float i {
@@ -830,7 +814,14 @@
     .badge-float-2 {
       bottom: 60px;
       left: -24px;
+      transform: translateX(-50%);
       animation-delay: 1.5s;
+    }
+
+    .badge-float-3 {
+      top: 40%;
+      right: -24px;
+      animation-delay: 0.8s;
     }
 
     .rk-badge {
@@ -1683,9 +1674,6 @@
       box-shadow: 0 6px 18px rgba(201, 168, 76, .15);
     }
 
-    /* ═══════════════════════════════════════
-   SCROLL TOP
-═══════════════════════════════════════ */
     #scrollTop {
       position: fixed;
       bottom: 2rem;
@@ -1718,9 +1706,6 @@
       transform: translateY(-3px);
     }
 
-    /* ═══════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -1770,9 +1755,6 @@
       transition-delay: calc(var(--i, 0)*0.04s);
     }
 
-    /* ═══════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════ */
     @media(max-width:960px) {
       .hero-inner {
         grid-template-columns: 1fr;
@@ -1878,6 +1860,10 @@
       <div class="pre-track">
         <div class="pre-fill" id="preFill"></div>
       </div>
+      <div class="pre-percent">0%</div>
+      <div class="pre-dots">
+        <div class="pre-fill" id="preFill"></div>
+      </div>
       <div class="pre-dots">
         <span></span><span></span><span></span>
       </div>
@@ -1887,7 +1873,7 @@
   <!-- ══ NAV ══ -->
   <nav id="mainNav">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">R<span class="dot"> </span>Sah</a>
+      <a href="#home" class="nav-logo">Rajbabu K. Sah</a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -1931,6 +1917,7 @@
         <div class="profile-outer">
           <div class="badge-float badge-float-1"><i class="fab fa-angular"></i> Angular Dev</div>
           <div class="badge-float badge-float-2"><i class="fas fa-code"></i> TypeScript</div>
+          <div class="badge-float badge-float-3"><i class="fab fa-react"></i> React Dev</div>
           <div class="profile-frame">
             <img src="assets/portfolio.png" alt="Raj K Sah"
               onerror="this.style.cssText='display:block;width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a,#2a2a2a)';">
