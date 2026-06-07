@@ -923,7 +923,7 @@
       display: block;
     }
 
-  
+
     section {
       padding: 7rem 0;
       position: relative;
@@ -1823,6 +1823,10 @@
         justify-content: center;
       }
     }
+
+    .hamburger i {
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 
@@ -1866,7 +1870,9 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <i id="menuIcon" class="fas fa-bars"></i>
+      </button>
     </div>
     <div id="mobileMenu">
       <a href="#home" onclick="closeMenu()">Home</a>
@@ -2276,8 +2282,29 @@
     });
 
     /* ── MOBILE MENU ── */
-    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-    function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('menuIcon');
+
+      menu.classList.toggle('open');
+
+      if (menu.classList.contains('open')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('menuIcon');
+
+      menu.classList.remove('open');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
 
     /* ── SCROLL REVEAL ── */
     const revealObs = new IntersectionObserver(entries => {
