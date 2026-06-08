@@ -812,7 +812,7 @@
     }
 
     .badge-float-2 {
-      bottom: 60px;
+      bottom: 180px;
       left: -24px;
       transform: translateX(-50%);
       animation-delay: 1.5s;
@@ -1827,6 +1827,42 @@
     .hamburger i {
       transition: all 0.3s ease;
     }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    /* Select specific styling */
+    select.form-input {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 14px;
+      padding-right: 45px;
+    }
+
+    /* Dropdown options */
+    select.form-input option {
+      background: #141414;
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -1947,7 +1983,7 @@
           <p>I continuously focus on improving my development skills and expanding toward full-stack engineering, with
             strong emphasis on writing clean, maintainable, and scalable code.</p>
           <div class="about-actions">
-            <a href="assets/cv/Rajbabu_Kumar_Sah_CV.pdf" download class="btn-cv"><i class="fas fa-download"></i>
+            <a href="resume/Rajbabu k Sah .pdf" download class="btn-cv"><i class="fas fa-download"></i>
               Download CV</a>
           </div>
           <div class="about-highlights">
@@ -1993,7 +2029,7 @@
             <div class="fact-row"><span class="fact-label">Languages</span><span class="fact-value">English, Nepali,
                 Hindi</span></div>
             <div class="fact-row"><span class="fact-label">Email</span><span class="fact-value"
-                style="font-size:.8rem;">rajsah2004@outlook.com</span></div>
+                style="font-size:.8rem;">rajbabuksah@gmail.com</span></div>
           </div>
         </div>
       </div>
@@ -2131,7 +2167,7 @@
           <div class="p-img"><img src="assets/nfa.png" alt="NFA Portal Project"></div>
           <div class="p-body">
             <h3 class="p-title">NFA Portal</h3>
-            <p class="p-desc">National Forestry Authority web portal with modern responsive design, beautiful UI
+            <p class="p-desc">Nepal Forestry Authority web portal with modern responsive design, beautiful UI
               components, and seamless user experience.</p>
             <div class="p-tags"><span class="p-tag">React</span><span class="p-tag">API Integration</span><span
                 class="p-tag">Tailwind CSS</span><span class="p-tag">Bootstrap</span></div>
@@ -2154,7 +2190,7 @@
           <p class="contact-intro">Open to new opportunities, collaborations, or just a conversation about frontend
             development. Feel free to reach out through any channel.</p>
           <div class="contact-channels">
-            <a href="mailto:rajsah2004@outlook.com" class="channel">
+            <a href="mailto:rajbabuksah@gmail.com" class="channel">
               <div class="channel-ico"><i class="fas fa-envelope"></i></div>
               <div><span class="channel-label">Email</span><span class="channel-val"></span></div>
             </a>
@@ -2168,7 +2204,7 @@
             </a>
           </div>
         </div>
-        <div class="reveal-right">
+        <!-- <div class="reveal-right">
           <div class="form-card">
             <form id="contactForm">
               <div class="form-row-2">
@@ -2185,7 +2221,64 @@
                 Message</button>
             </form>
           </div>
-        </div>
+        </div> -->
+        <form id="contactForm">
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" placeholder="John Doe" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label">Company / Organization</label>
+              <input type="text" class="form-input" placeholder="Company name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp</label>
+              <input type="text" class="form-input" placeholder="+977 98XXXXXXXX">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Inquiry Type</label>
+            <select class="form-input">
+              <option value="">Select an option</option>
+              <option>Job Opportunity</option>
+              <option>Freelance Project</option>
+              <option>Website Development</option>
+              <option>UI/UX Improvement</option>
+              <option>Consultation</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Project / Subject</label>
+            <input type="text" class="form-input" placeholder="Website Development for My Business" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Project Details</label>
+            <textarea class="form-input" rows="6"
+              placeholder="Tell me about your project, requirements, goals, timeline, and expectations..."
+              required></textarea>
+          </div>
+
+          <button type="submit" class="btn-gold form-submit">
+            <i class="fas fa-paper-plane"></i>
+            Send Inquiry
+          </button>
+
+        </form>
       </div>
     </div>
   </section>
@@ -2200,7 +2293,7 @@
         <a href="https://github.com/Razzsha" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/razz-sah-869b94360/" target="_blank" aria-label="LinkedIn"><i
             class="fab fa-linkedin"></i></a>
-        <a href="mailto:rajsah2004@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:rajbabuksah@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
   </footer>
@@ -2338,7 +2431,7 @@
       const name = inputs[0].value.trim(), email = inputs[1].value.trim();
       const subject = inputs[2].value.trim(), message = inputs[3].value.trim();
       const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-      window.location.href = `mailto:rajsah2004@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:rajbabuksah@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       const btn = this.querySelector('button[type="submit"]');
       btn.innerHTML = '<i class="fas fa-check"></i> Opening Mail...';
       btn.style.background = 'linear-gradient(135deg,#6fcf97,#27ae60)';
