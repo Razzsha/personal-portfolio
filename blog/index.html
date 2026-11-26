@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From GitHub to Automation: Understanding GitHub Actions and CI/CD</title>
+<meta name="description" content="Learn Git, GitHub, GitHub Actions, and CI/CD with practical Angular and ASP.NET Core examples. Build your first automated CI pipeline.">
+<link rel="canonical" href="https://www.rajbabukumarsah.com.np/blog/github-github-actions-cicd-guide">
+<meta name="author" content="Rajbabu Kumar Sah">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From GitHub to Automation: Understanding GitHub Actions and CI/CD">
+<meta property="og:description" content="Learn Git, GitHub, GitHub Actions, and CI/CD with practical Angular and ASP.NET Core examples. Build your first automated CI pipeline.">
+<meta property="og:url" content="https://www.rajbabukumarsah.com.np/blog/github-github-actions-cicd-guide">
+<meta property="og:image" content="https://www.rajbabukumarsah.com.np/assets/blog/github-actions-cicd-cover.png">
+<meta property="article:published_time" content="2026-11-26">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From GitHub to Automation: Understanding GitHub Actions and CI/CD">
+<meta name="twitter:description" content="Learn Git, GitHub, GitHub Actions, and CI/CD with practical Angular and ASP.NET Core examples. Build your first automated CI pipeline.">
+<meta name="twitter:image" content="https://www.rajbabukumarsah.com.np/assets/blog/github-actions-cicd-cover.png">
+<link rel="icon" href="/assets/github-actions-cicd-cover.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle","headline":"From GitHub to Automation: Understanding GitHub Actions and CI/CD","alternativeHeadline":"A Practical Guide to GitHub, GitHub Actions, and CI/CD with Angular and ASP.NET Core Examples","description":"Learn Git, GitHub, GitHub Actions, and CI/CD with practical Angular and ASP.NET Core examples. Build your first automated CI pipeline.","image":"https://www.rajbabukumarsah.com.np/assets/blog/github-actions-cicd-cover.png","datePublished":"2026-11-26","dateModified":"2026-11-26","author":{"@type":"Person","name":"Rajbabu Kumar Sah","url":"https://www.rajbabukumarsah.com.np"},"mainEntityOfPage":"https://www.rajbabukumarsah.com.np/blog/github-github-actions-cicd-guide","keywords":"GitHub, GitHub Actions, CI/CD, DevOps, Angular, ASP.NET Core, Automation","proficiencyLevel":"Beginner"}
+</script>
+<style>
+:root{--navy:#0f1b3d;--text:#334155;--muted:#64748b;--blue:#2563eb;--blue-soft:#eff6ff;--line:#e2e8f0;--bg:#fff;--code:#0f172a;--font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',Consolas,monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.75;font-size:1.02rem}
+a{color:var(--blue)}a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding:0 1.5rem;height:62px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.top a{text-decoration:none;font-weight:600;font-size:.9rem;color:var(--navy)}.top a:hover{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.hero{max-width:820px;margin:1.5rem auto 2.5rem}
+.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.badge{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .75rem;border-radius:999px;background:var(--blue-soft);color:var(--blue)}.badge.alt{background:#f1f5f9;color:var(--navy)}
+h1{color:var(--navy);font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.15;letter-spacing:-.02em;font-weight:800}
+.sub{font-size:1.15rem;color:var(--muted);margin:.8rem 0 1.2rem}
+.meta{display:flex;flex-wrap:wrap;gap:1.2rem;font-size:.85rem;color:var(--muted)}
+.cover{display:block;width:100%;max-width:980px;margin:0 auto 3rem;border-radius:14px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(15,27,61,.12)}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:3rem;max-width:1100px;margin:0 auto}
+.toc{position:sticky;top:84px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;font-size:.86rem}
+.toc h2{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.toc ol{list-style:none;border-left:2px solid var(--line)}
+.toc a{display:block;padding:.3rem .8rem;margin-left:-2px;border-left:2px solid transparent;color:var(--muted);text-decoration:none;line-height:1.4}
+.toc a:hover{color:var(--navy)}.toc a.active{color:var(--blue);border-left-color:var(--blue);font-weight:600}
+.toc details>summary{display:none}
+article{min-width:0;max-width:760px}
+article h2{color:var(--navy);font-size:1.65rem;letter-spacing:-.01em;margin:3rem 0 1rem;line-height:1.25;padding-top:.5rem;border-top:1px solid var(--line)}
+article h2:first-of-type{border-top:0;margin-top:0}
+article h3{color:var(--navy);font-size:1.15rem;margin:1.8rem 0 .5rem}
+article p,article ul,article ol.n{margin-bottom:1.1rem}article ul,article ol.n{padding-left:1.4rem}article li{margin:.25rem 0}
+code{font-family:var(--mono);font-size:.88em;background:#f1f5f9;color:#be185d;padding:.12em .4em;border-radius:5px}
+.code{margin:1.3rem 0;border-radius:12px;overflow:hidden;background:var(--code);border:1px solid #1e293b}
+.code-bar{display:flex;justify-content:space-between;align-items:center;background:#1e293b;padding:.45rem .9rem;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8}
+.copy{font:inherit;letter-spacing:.04em;background:#334155;color:#e2e8f0;border:0;border-radius:6px;padding:.3rem .7rem;cursor:pointer}.copy:hover{background:#475569}
+.code pre{overflow-x:auto;padding:1rem 1.1rem;margin:0}
+.code pre code{display:block;background:none;color:#e2e8f0;padding:0;font-size:.84rem;line-height:1.65;white-space:pre}
+.t-k{color:#7dd3fc}.t-s{color:#86efac}.t-c{color:#64748b;font-style:italic}.t-v{color:#fbbf24}.t-n{color:#c4b5fd}
+.tbl{overflow-x:auto;margin:1.3rem 0;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:520px}
+th{background:var(--blue-soft);color:var(--navy);text-align:left;padding:.65rem .9rem;font-size:.8rem}
+td{padding:.65rem .9rem;border-top:1px solid var(--line);vertical-align:top}
+.callout{border-left:4px solid var(--blue);background:var(--blue-soft);padding:.9rem 1.1rem;border-radius:0 10px 10px 0;margin:1.3rem 0;font-size:.95rem}
+.callout.warn{border-color:#d97706;background:#fffbeb}.callout strong{color:var(--navy)}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin:1.4rem 0;padding:1.1rem;border:1px solid var(--line);border-radius:12px;background:#f8fafc}
+.flow .st{flex:1 1 110px;text-align:center;padding:.7rem .5rem;background:#fff;border:1px solid #bfdbfe;border-radius:10px;font-size:.82rem;font-weight:600;color:var(--navy)}
+.flow .st small{display:block;font-weight:400;color:var(--muted);font-size:.72rem}
+.flow .ar{align-self:center;color:var(--blue);font-weight:700}
+.flow.col{flex-direction:column}.flow.col .ar{transform:rotate(90deg);text-align:center}
+@media(min-width:700px){.flow.col{flex-direction:row}.flow.col .ar{transform:none}}
+@media(max-width:699px){.flow .ar{transform:rotate(90deg);flex:1 0 100%;text-align:center;line-height:1}}
+figure{margin:1.4rem 0}figcaption{font-size:.8rem;color:var(--muted);text-align:center;margin-top:.4rem}
+.git-svg{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#f8fafc}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:2.5rem 0 1.5rem}.tags span{font-size:.78rem;padding:.25rem .7rem;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.author{display:flex;gap:1rem;align-items:center;padding:1.2rem;border:1px solid var(--line);border-radius:12px;background:#f8fafc}
+.av{width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.author p{margin:0;font-size:.9rem}.author strong{color:var(--navy)}
+.related{margin-top:2.5rem}.related h2{border:0;margin:0 0 .8rem;padding:0;font-size:1.2rem}
+.rel-card{display:block;padding:1.1rem 1.2rem;border:1px dashed #cbd5e1;border-radius:12px;text-decoration:none;color:var(--muted);font-size:.92rem}
+.back{display:inline-block;margin-top:2rem;font-weight:600;text-decoration:none}
+footer{border-top:1px solid var(--line);padding:1.5rem;text-align:center;font-size:.82rem;color:var(--muted)}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:1.5rem}.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:10px;padding:.2rem 1rem}.toc h2{display:none}.toc details>summary{display:block;cursor:pointer;font-weight:700;color:var(--navy);padding:.8rem 0}.toc details:not([open]) ol{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in"><a href="/#home">Rajbabu K. Sah</a><nav aria-label="Primary"><a href="/blog/">All articles</a> &nbsp;·&nbsp; <a href="/#contact">Contact</a></nav></div></header>
+
+<main class="wrap">
+<header class="hero">
+  <div class="badges"><span class="badge">DevOps &amp; Software Development</span><span class="badge alt">Beginner</span></div>
+  <h1>From GitHub to Automation: Understanding GitHub Actions and CI/CD</h1>
+  <p class="sub">A Practical Guide to GitHub, GitHub Actions, and CI/CD with Angular and ASP.NET Core Examples.</p>
+  <div class="meta"><span>By Rajbabu Kumar Sah</span><time datetime="2026-11-26">November 26, 2026</time><span>12–15 min read</span></div>
+</header>
+<img class="cover" src="/assets/github-actions-cicd-cover.svg" alt="Cover graphic: GitHub Actions and CI/CD pipeline from code to automated deployment" width="1280" height="720">
+
+<div class="layout">
+<nav class="toc" aria-label="Table of contents"><details id="tocBox" open><summary>On this page</summary><h2>On this page</h2>
+<ol>
+<li><a href="#intro">1. Introduction</a></li><li><a href="#git">2. What is Git?</a></li><li><a href="#github">3. What is GitHub?</a></li>
+<li><a href="#cicd">4. What is CI/CD?</a></li><li><a href="#actions">5. What is GitHub Actions?</a></li><li><a href="#angular-ci">6. Your first workflow</a></li>
+<li><a href="#dotnet-ci">7. ASP.NET Core CI</a></li><li><a href="#deployment">8. CI/CD deployment</a></li><li><a href="#features">9. Important features</a></li>
+<li><a href="#benefits">10. Benefits</a></li><li><a href="#mistakes">11. Common mistakes</a></li><li><a href="#conclusion">12. Conclusion</a></li><li><a href="#references">13. Further learning</a></li>
+</ol></details></nav>
+
+<article>
+<h2 id="intro">1. Introduction</h2>
+<p>Building, testing and deploying by hand works for a weekend project. On a team it breaks down: someone forgets to run the tests, a build works on one laptop and fails on another, and a release becomes a stressful checklist.</p>
+<p><strong>Git</strong> tracks your code, <strong>GitHub</strong> hosts and organizes it, <strong>GitHub Actions</strong> runs automated tasks when something happens in the repository, and <strong>CI/CD</strong> is the practice those tasks implement. By the end you will understand each piece and have working CI workflows for an Angular app and an ASP.NET Core Web API.</p>
+
+<h2 id="git">2. What is Git?</h2>
+<p>Git is a distributed version control system. Every developer has a full copy of the project history, so you can track changes, work on <em>branches</em> in isolation, save snapshots called <em>commits</em>, collaborate by merging work, and revert when something goes wrong.</p>
+<div class="code"><div class="code-bar"><span>Bash</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-bash">git init                      # start a repository
+git clone &lt;url&gt;               # copy an existing repository
+git status                    # see what changed
+git add .                     # stage all changes
+git commit -m "Initial commit"
+git push                      # upload commits to GitHub
+git pull                      # download and merge remote changes
+git branch                    # list or create branches
+git merge &lt;branch&gt;            # merge a branch into the current one</code></pre></div>
+<h3>Workflow: initialize and push to GitHub</h3>
+<p>Create an empty repository on GitHub first, then run:</p>
+<div class="code"><div class="code-bar"><span>Bash</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-bash">git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/your-username/your-repo.git
+git push -u origin main</code></pre></div>
+<figure>
+<svg class="git-svg" viewBox="0 0 640 190" role="img" aria-label="Git branching: a feature branch splits from main and merges back">
+<g stroke="#2563eb" stroke-width="3" fill="none"><path d="M40 60H600"/><path d="M160 60C190 60 190 140 230 140H410C450 140 450 60 480 60"/></g>
+<g fill="#fff" stroke="#0f1b3d" stroke-width="3"><circle cx="40" cy="60" r="10"/><circle cx="160" cy="60" r="10"/><circle cx="480" cy="60" r="10"/><circle cx="600" cy="60" r="10"/><circle cx="260" cy="140" r="10"/><circle cx="380" cy="140" r="10"/></g>
+<g font-family="Inter,sans-serif" font-size="13" fill="#0f1b3d" font-weight="600"><text x="40" y="38" text-anchor="middle">main</text><text x="320" y="176" text-anchor="middle">feature/login</text><text x="160" y="38" text-anchor="middle">branch</text><text x="480" y="38" text-anchor="middle">merge</text></g>
+</svg><figcaption>Git branching workflow: work on a branch, then merge it back into main.</figcaption></figure>
+
+<h2 id="github">3. What is GitHub?</h2>
+<p><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> is a cloud platform for hosting Git repositories and collaborating on them. Key concepts: a <strong>repository</strong> holds your code and history; <strong>branches</strong> and <strong>commits</strong> work as in Git; a <strong>pull request</strong> proposes merging a branch; <strong>issues</strong> track tasks and bugs; <strong>code review</strong> lets teammates comment before merging.</p>
+<div class="code"><div class="code-bar"><span>Bash</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-bash">my-app/
+├── src/
+├── package.json
+├── README.md
+└── .github/
+    └── workflows/        # GitHub Actions workflows live here
+
+# Typical branch workflow
+git switch -c feature/login
+git add . &amp;&amp; git commit -m "Add login form"
+git push -u origin feature/login   # then open a pull request</code></pre></div>
+
+<h2 id="cicd">4. What is CI/CD?</h2>
+<ul>
+<li><strong>Continuous Integration (CI):</strong> merge small changes often; every change is built and tested automatically so errors surface early.</li>
+<li><strong>Continuous Delivery:</strong> every successful change is packaged and ready to release. Production deployment may need a manual approval.</li>
+<li><strong>Continuous Deployment:</strong> successful changes go to production automatically, with no routine manual approval.</li>
+</ul>
+<div class="flow" role="img" aria-label="Developer to GitHub to build to tests to deployment to production">
+<div class="st">Developer</div><span class="ar">→</span><div class="st">GitHub</div><span class="ar">→</span><div class="st">Automated Build</div><span class="ar">→</span><div class="st">Automated Tests</div><span class="ar">→</span><div class="st">Deployment</div><span class="ar">→</span><div class="st">Production</div></div>
+<div class="tbl"><table><thead><tr><th>Aspect</th><th>Continuous Delivery</th><th>Continuous Deployment</th></tr></thead><tbody>
+<tr><td>Release to production</td><td>Manual approval step</td><td>Automatic after checks pass</td></tr>
+<tr><td>Release readiness</td><td>Always ready to ship</td><td>Shipped immediately</td></tr>
+<tr><td>Best for</td><td>Teams needing sign-off or schedules</td><td>Teams with strong automated tests</td></tr></tbody></table></div>
+
+<h2 id="actions">5. What is GitHub Actions?</h2>
+<p><a href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a> is a workflow automation and CI/CD platform built into GitHub. You describe automation in YAML files, and GitHub runs them when events occur.</p>
+<div class="tbl"><table><thead><tr><th>Concept</th><th>Explanation</th></tr></thead><tbody>
+<tr><td>Workflow</td><td>Automated process defined in YAML</td></tr><tr><td>Event</td><td>Trigger that starts a workflow</td></tr>
+<tr><td>Job</td><td>Group of steps executed together</td></tr><tr><td>Runner</td><td>Machine that executes a job</td></tr>
+<tr><td>Step</td><td>Individual task</td></tr><tr><td>Action</td><td>Reusable automation component</td></tr>
+<tr><td>Artifact</td><td>Generated files saved by a workflow</td></tr></tbody></table></div>
+<div class="flow" role="img" aria-label="GitHub Actions execution flow">
+<div class="st">Event<small>push / PR</small></div><span class="ar">→</span><div class="st">Workflow<small>YAML file</small></div><span class="ar">→</span><div class="st">Job<small>on a runner</small></div><span class="ar">→</span><div class="st">Steps<small>actions &amp; commands</small></div><span class="ar">→</span><div class="st">Result<small>pass / fail + artifacts</small></div></div>
+<div class="code"><div class="code-bar"><span>Bash</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-bash">.github/
+└── workflows/
+    ├── angular-ci.yml
+    └── dotnet-ci.yml</code></pre></div>
+
+<h2 id="angular-ci">6. Create Your First GitHub Actions Workflow</h2>
+<p>Create <code>.github/workflows/angular-ci.yml</code> in your Angular repository:</p>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">name: Angular CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build Angular Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Angular Application
+        run: npm run build</code></pre></div>
+<ul>
+<li><code>name</code>: label shown in the Actions tab.</li>
+<li><code>on</code>: events that start it, here pushes and pull requests targeting <code>main</code>.</li>
+<li><code>jobs.build</code>: one job; <code>runs-on: ubuntu-latest</code> picks a GitHub-hosted Linux runner.</li>
+<li><code>actions/checkout</code>: downloads your repository onto the runner.</li>
+<li><code>actions/setup-node</code>: installs the Node.js version in <code>node-version</code>.</li>
+<li><code>npm ci</code>: clean, reproducible install from <code>package-lock.json</code>.</li>
+<li><code>npm run build</code>: runs the build script from <code>package.json</code>; a failure fails the workflow.</li>
+</ul>
+<div class="callout warn"><strong>Important:</strong> the Node.js version must be compatible with the Angular version your project uses. Check the Angular version compatibility table, then change <code>node-version</code> to match.</div>
+<h3>Steps</h3>
+<ol class="n">
+<li>Create the directory: <code>mkdir -p .github/workflows</code></li><li>Create <code>angular-ci.yml</code> inside it.</li><li>Paste the configuration above.</li>
+<li>Commit and push: <code>git add . &amp;&amp; git commit -m "Add Angular CI" &amp;&amp; git push</code></li>
+<li>Open your repository on GitHub and click the <strong>Actions</strong> tab.</li><li>Select the latest run of "Angular CI Pipeline" and open the <strong>build</strong> job.</li>
+<li>Read the result: a green check means every step passed. A red cross means a step failed; expand it to read the log, fix the cause, and push again.</li></ol>
+
+<h2 id="dotnet-ci">7. ASP.NET Core CI Pipeline</h2>
+<p>Create <code>.github/workflows/dotnet-ci.yml</code> in your Web API repository:</p>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">name: ASP.NET Core CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Application
+        run: dotnet build --no-restore
+
+      - name: Run Tests
+        run: dotnet test --no-build</code></pre></div>
+<p>The steps: check out the repository; install the .NET SDK; restore NuGet packages; build the solution (<code>--no-restore</code> reuses the restored packages); run automated tests (<code>--no-build</code> reuses the build).</p>
+<div class="callout"><strong>Note:</strong> this example assumes a .NET 10 solution with test projects. Adjust the SDK version and working directory (<code>working-directory:</code>) to match your project.</div>
+
+<h2 id="deployment">8. Understanding CI/CD Deployment</h2>
+<p>A full pipeline runs: code push, automated build, automated tests, package generation, deployment, and production verification (a smoke test or health check).</p>
+<div class="flow col" role="img" aria-label="Deployment architecture">
+<div class="st">Developer</div><span class="ar">→</span><div class="st">GitHub Repository</div><span class="ar">→</span><div class="st">GitHub Actions</div><span class="ar">→</span><div class="st">Build &amp; Test</div><span class="ar">→</span><div class="st">Deployment Package</div><span class="ar">→</span><div class="st">Production Server</div></div>
+<p>Typical targets include Azure, AWS, a VPS, or private hosting servers. Whatever you choose, never hardcode passwords, tokens or keys in the repository. Store them as <strong>GitHub Secrets</strong> and read them in the workflow:</p>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">- name: Deploy Application
+  run: echo "Deployment started"
+  env:
+    DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}</code></pre></div>
+<p>Add a secret via <strong>GitHub Repository → Settings → Secrets and variables → Actions</strong>, then choose <em>New repository secret</em>. GitHub masks secret values in logs.</p>
+
+<h2 id="features">9. Important GitHub Actions Features</h2>
+<h3>Triggers, manual runs and schedules</h3>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:        # adds a "Run workflow" button
+  schedule:
+    - cron: '0 2 * * *'     # daily at 02:00 UTC</code></pre></div>
+<h3>Multiple jobs and dependencies</h3>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "build"
+  deploy:
+    needs: build            # runs only if build succeeds
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy"</code></pre></div>
+<h3>Artifacts</h3>
+<div class="code"><div class="code-bar"><span>YAML</span><button class="copy" type="button">Copy</button></div><pre><code class="lang-yaml">- name: Upload build output
+  uses: actions/upload-artifact@v4
+  with:
+    name: angular-dist
+    path: dist/</code></pre></div>
+<p>The <a href="https://github.com/marketplace?type=actions" target="_blank" rel="noopener">GitHub Actions Marketplace</a> offers thousands of reusable actions. Check the version tags shown in each action's own README before pinning one.</p>
+
+<h2 id="benefits">10. Benefits of GitHub Actions and CI/CD</h2>
+<ul><li><strong>Saves time:</strong> no repeated manual builds and checks.</li><li><strong>Early error detection:</strong> broken changes fail on the pull request, not in production.</li><li><strong>Consistent builds:</strong> every run starts from a clean machine.</li><li><strong>Better collaboration:</strong> reviewers see pass/fail status on every pull request.</li><li><strong>Reliable deployments:</strong> the same scripted process every time.</li><li><strong>Improved quality:</strong> tests run on every change.</li></ul>
+
+<h2 id="mistakes">11. Common Mistakes Beginners Should Avoid</h2>
+<div class="tbl"><table><thead><tr><th>Mistake</th><th>Solution</th></tr></thead><tbody>
+<tr><td>Incorrect Node.js or .NET version</td><td>Match the version to your Angular or .NET project.</td></tr>
+<tr><td>Missing <code>package-lock.json</code></td><td>Commit it; <code>npm ci</code> requires it.</td></tr>
+<tr><td>Incorrect workflow directory</td><td>Files must be in <code>.github/workflows/</code> and end in <code>.yml</code> or <code>.yaml</code>.</td></tr>
+<tr><td>Incorrect build commands</td><td>Confirm the script exists in <code>package.json</code>, or the .NET solution path is right.</td></tr>
+<tr><td>Exposing credentials</td><td>Use GitHub Secrets; rotate anything that was committed.</td></tr>
+<tr><td>Missing automated tests</td><td>Add at least basic tests so CI means something.</td></tr>
+<tr><td>Ignoring failed workflow logs</td><td>Open the failed step and read the error first.</td></tr>
+<tr><td>Using untrusted third-party actions</td><td>Prefer official or well-reviewed actions and pin versions.</td></tr></tbody></table></div>
+
+<h2 id="conclusion">12. Conclusion</h2>
+<p>Git records your history, GitHub hosts and reviews it, GitHub Actions runs automation on it, and CI/CD is the habit of building, testing and delivering every change automatically. Start small: add a build-only workflow, then automated tests, then deployment.</p>
+<div class="callout"><strong>The goal of automation isn't just to write less code manually. It's to build, test, and deliver better software more consistently.</strong></div>
+
+<h2 id="references">13. Further Learning and References</h2>
+<ul>
+<li><a href="https://git-scm.com/doc" target="_blank" rel="noopener">Git Documentation</a></li>
+<li><a href="https://docs.github.com/en/get-started" target="_blank" rel="noopener">GitHub Getting Started</a></li>
+<li><a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">GitHub Actions</a></li>
+<li><a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax" target="_blank" rel="noopener">GitHub Actions Workflow Syntax</a></li>
+<li><a href="https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs" target="_blank" rel="noopener">Building and Testing Node.js</a></li>
+<li><a href="https://docs.github.com/en/actions/tutorials/build-and-test-code/dotnet" target="_blank" rel="noopener">Building and Testing .NET</a></li>
+<li><a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions" target="_blank" rel="noopener">GitHub Secrets</a></li></ul>
+
+<div class="tags" aria-label="Tags"><span>GitHub</span><span>GitHub Actions</span><span>CI/CD</span><span>DevOps</span><span>Angular</span><span>ASP.NET Core</span><span>Automation</span></div>
+<aside class="author"><div class="av" aria-hidden="true">RS</div><p><strong>Rajbabu Kumar Sah</strong><br>Full stack developer in Kathmandu, building with Angular, ASP.NET Core and SQL Server. <a href="/#contact">Get in touch</a>.</p></aside>
+<section class="related"><h2>Related articles</h2><a class="rel-card" href="/blog/">More articles are on the way. Browse all articles →</a></section>
+<a class="back" href="/blog/">← Back to blogs</a>
+</article>
+</div>
+</main>
+<footer>© 2026 Rajbabu Kumar Sah</footer>
+
+<script>
+/* Syntax highlighting (tiny, dependency-free) */
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function hl(code,lang){
+  let t=esc(code);
+  if(lang==='yaml'){
+    t=t.replace(/(#.*)$/gm,'<span class="t-c">$1</span>')
+       .replace(/(\$\{\{.*?\}\})/g,'<span class="t-v">$1</span>')
+       .replace(/^(\s*-?\s*)([\w.-]+)(:)(?!\/)/gm,'$1<span class="t-k">$2</span>$3')
+       .replace(/('[^'\n]*')/g,'<span class="t-s">$1</span>');
+  }else if(lang==='bash'){
+    t=t.replace(/("[^"\n]*")/g,'<span class="t-s">$1</span>')
+       .replace(/(#.*)$/gm,'<span class="t-c">$1</span>')
+       .replace(/^(\s*)(git|mkdir)\b/gm,'$1<span class="t-k">$2</span>');
+  }
+  return t;
+}
+document.querySelectorAll('pre code').forEach(el=>{
+  el.dataset.raw=el.textContent;
+  const m=el.className.match(/lang-(\w+)/);
+  if(m) el.innerHTML=hl(el.dataset.raw,m[1]);
+});
+/* Copy buttons: copy raw text only */
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{
+  const code=b.closest('.code').querySelector('code').dataset.raw;
+  try{await navigator.clipboard.writeText(code);b.textContent='Copied!'}catch{b.textContent='Press Ctrl+C'}
+  setTimeout(()=>b.textContent='Copy',1800);
+}));
+/* TOC: active section + collapse on mobile */
+const links=[...document.querySelectorAll('.toc a')];
+const heads=links.map(a=>document.querySelector(a.getAttribute('href')));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));}
+}),{rootMargin:'-90px 0px -70% 0px'});
+heads.forEach(h=>h&&obs.observe(h));
+const box=document.getElementById('tocBox');
+if(window.matchMedia('(max-width:900px)').matches) box.removeAttribute('open');
+links.forEach(l=>l.addEventListener('click',()=>{if(window.matchMedia('(max-width:900px)').matches)box.removeAttribute('open')}));
+</script>
+</body>
+</html>
